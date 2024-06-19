@@ -1,17 +1,24 @@
 import React from 'react';
-import GlobalStyle from './styles'
+import GlobalStyle, { Container } from './styles'
 import Sidebar from './containers/Sidebar';
+import ListaTarefas from './containers/ListaTarefas';
  
 
 function App() {
   return (
-    <div className="App">
+    <>
 
       <GlobalStyle />
-      <Sidebar />
+
+      <Container>
+        <Sidebar />
+        <ListaTarefas />
+      </Container>
+
+
 
       
-    </div>
+    </>
   );
 }
 
