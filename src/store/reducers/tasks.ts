@@ -2,7 +2,9 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import Task from "../../models/Task";
 import * as enums from '../../utils/enums/Tasks'
 
-const initialState = [
+const initialState = {
+
+    items: [
     new Task(
         'Estudar',
         enums.Priority.IMPORTANT,
@@ -24,14 +26,16 @@ const initialState = [
         'zzz',
         3
     )
-];
+]};
+
+
 
 const taskSlice = createSlice({
     name: 'tasks',
     initialState,
     reducers: {
         remove: (state, action: PayloadAction<number>) => {
-            state = state.filter(task => task.id !== action.payload)
+            state.items = state.items.filter(task => task.id !== action.payload)
         }
 
     }

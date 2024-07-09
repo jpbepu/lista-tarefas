@@ -17,15 +17,16 @@ const tasks = [
  
 const TaskList = () => {
 
-    const { tasks } = useSelector((state:RootReducer) => state) 
+    const { items } = useSelector((state:RootReducer) => state.tasks) 
 
     return(
         <Container>
             <p>2 tarefas marcadas como: xxx xxx</p>
             <ul>
-                {tasks.map(t => (
+                {items.map(t => (
                     <li key={t.title}>
                         <Task
+                            id={t.id}
                             title={t.title}
                             description={t.description}
                             priority={t.priority}
