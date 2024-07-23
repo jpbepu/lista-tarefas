@@ -18,12 +18,17 @@ const tasks = [
 const TaskList = () => {
 
     const { items } = useSelector((state:RootReducer) => state.tasks) 
+    const { term } = useSelector((state:RootReducer) => state.filter)
+
+    const filterTasks = () => {
+        return items.filter( item => item.title.toLowerCase().search(term.toLowerCase()) >= 0)
+    }
 
     return(
         <Container>
-            <p>2 tarefas marcadas como: xxx xxx</p>
+            <p>2 tarefas marcadas como: &quot;categoria&quot; e &quot;{term}&quot;</p>
             <ul>
-                {items.map(t => (
+                {filterTasks().map((t) => (
                     <li key={t.title}>
                         <Task
                             id={t.id}
