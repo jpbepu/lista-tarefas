@@ -8,20 +8,20 @@ const initialState = {
     new Task(
         'Estudar',
         enums.Priority.IMPORTANT,
-        enums.Status.PENDING,
+        enums.Status.COMPLETED,
         'Estudar front-end',
         1
     ),
     new Task(
         'Jogar',
-        enums.Priority.IMPORTANT,
+        enums.Priority.NORMAL,
         enums.Status.PENDING,
         'Jogar SF6',
         2
     ),
     new Task(
         'Dormir',
-        enums.Priority.IMPORTANT,
+        enums.Priority.URGENT,
         enums.Status.PENDING,
         'zzz',
         3

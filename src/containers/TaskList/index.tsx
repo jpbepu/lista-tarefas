@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux"
 
 import Task from "../../components/Task"
-import { Container } from "./styles"
+import { Container, Result } from "./styles"
 import * as enums  from '../../utils/enums/Tasks'
 import { RootReducer } from "../../store"
 
@@ -18,17 +18,54 @@ const tasks = [
 const TaskList = () => {
 
     const { items } = useSelector((state:RootReducer) => state.tasks) 
-    const { term } = useSelector((state:RootReducer) => state.filter)
+    const { term, criteria, value } = useSelector((state:RootReducer) => state.filter)
 
     const filterTasks = () => {
-        return items.filter( item => item.title.toLowerCase().search(term.toLowerCase()) >= 0)
+        let filteredTasks = items;
+
+        if (term !== undefined) {
+            filteredTasks = filteredTasks.filter( 
+                (item) => item.title.toLowerCase().search(term.toLowerCase()) >= 0
+            )
+            
+            if (criteria === 'prioridade') {
+                filteredTasks = filteredTasks.filter(
+                    (item) => item.priority === value
+                )
+            } else if (criteria === 'status') {
+                filteredTasks = filteredTasks.filter(
+                    (item) => item.status === value
+                )
+            }
+
+            return filteredTasks
+        
+        } else {
+            return items
+        }
     }
+
+    const showFilterResults = (n: number) => {
+        let message = ''
+        let comp = term !== undefined && term.length > 0 ? `e "${term}"` : ''
+
+        if (criteria === 'todas') {
+            message = `${n} tarefa(s) encontradas como: todas ${comp}`
+        } else {
+            message = `${n} tarefa(s) encontradas como: "${criteria} = ${value}" ${comp}`
+        }
+
+        return message
+    }
+
+    const tasks = filterTasks()
+    const message = showFilterResults(tasks.length)
 
     return(
         <Container>
-            <p>2 tarefas marcadas como: &quot;categoria&quot; e &quot;{term}&quot;</p>
+            <Result>{message}</Result>
             <ul>
-                {filterTasks().map((t) => (
+                {tasks.map((t) => (
                     <li key={t.title}>
                         <Task
                             id={t.id}
