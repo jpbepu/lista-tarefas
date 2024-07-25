@@ -1,11 +1,17 @@
-import React from 'react';
-import GlobalStyle, { Container } from './styles'
-import Sidebar from './containers/Sidebar';
-import ListaTarefas from './containers/TaskList';
 import { Provider } from 'react-redux';
-import store from './store' 
- 
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
+import GlobalStyle, { Container } from './styles'
+
+import store from './store' 
+import Home from './pages/Home';
+ 
+const routes = createBrowserRouter([
+  {
+    path:'/',
+    element: <Home />
+  }
+])
 
 function App() {
   return (
@@ -14,8 +20,7 @@ function App() {
       <GlobalStyle />
 
       <Container>
-        <Sidebar />
-        <ListaTarefas />
+        <RouterProvider router={routes} />
       </Container>
 
 
