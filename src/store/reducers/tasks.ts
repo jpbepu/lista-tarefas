@@ -43,11 +43,22 @@ const taskSlice = createSlice({
             if (taskIndex >= 0) {
                 state.items[taskIndex] = action.payload
             }
+        },
+        register: (state, action : PayloadAction<Task>) =>{
+            const existingTask = state.items.find(
+                t => t.title.toLowerCase() === action.payload.title.toLowerCase()
+            )
+
+            if (existingTask) {
+                alert('tarefa repetida')
+            } else {
+                state.items.push(action.payload)
+            }
         }
 
     }
 
 })
 
-export const { remove, edit } = taskSlice.actions
+export const { remove, edit, register } = taskSlice.actions
 export default taskSlice.reducer

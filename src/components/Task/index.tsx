@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 
 import * as S from './styles'
+import { SaveButton } from '../../styles'
 
-import * as enums from '../../utils/enums/Tasks'
 
 import { remove, edit } from '../../store/reducers/tasks'
 import TaskClass from '../../models/Task'
@@ -44,7 +44,7 @@ const Task = ({
             <S.Actions>
                 {isEditing ? (
                     <>
-                        <S.SaveButton
+                        <SaveButton
                             onClick={() => {
                                 dispatch(
                                     edit({
@@ -56,7 +56,7 @@ const Task = ({
                                     })
                                 )
                                 setIsEditing(false)
-                            }}>Salvar</S.SaveButton>
+                            }}>Salvar</SaveButton>
 
                         <S.CancelButton
                             onClick={() => {
