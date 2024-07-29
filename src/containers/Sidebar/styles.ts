@@ -1,8 +1,9 @@
 import styled from "styled-components";
+import colors from "../../styles/colors";
 
 
 export const Aside = styled.aside`
-    background-color: #c5c5c5;
+    background-color: ${colors.sidebarBG};
     padding: 16px;
     height: 100vh;
 `

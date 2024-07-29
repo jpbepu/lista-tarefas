@@ -30,7 +30,7 @@ function BGColor(props:TagProps): string{
 //--------------------------------
 
 export const Card = styled.div`
-    background-color: aliceblue;
+    background-color: ${colors.cardBG};
     box-shadow:  0px 4px 4px rgba(0,0,0,0.5);
     padding: 16px;
     margin-bottom: 32px;
@@ -63,7 +63,7 @@ export const Tag = styled.span<TagProps>`
 
 export const Description = styled.textarea`
     font-family: monospace;
-    color: #8B8B8B;
+    color: ${colors.description};
     font-size: 14px;
     line-height: 24px;
     display: block;

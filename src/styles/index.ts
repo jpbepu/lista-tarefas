@@ -18,6 +18,8 @@ export const MainContainer = styled.main`
     padding: 0 40px;
     height: 100vh;
     overflow-y: scroll;
+    background-color: ${colors.background};
+    color: aliceblue;
 `
 
 export const Container = styled.div`
@@ -40,7 +42,7 @@ export const Button = styled.button`
     font-weight: bold;
     border: none;
     cursor: pointer;
-    background-color: #313131;
+    background-color: ${colors.buttonBG};
     border-radius: 8px;
     margin-right: 8px;
 `

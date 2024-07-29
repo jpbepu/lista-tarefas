@@ -50,7 +50,7 @@ const CardFilter = ({ label, criteria, value}: Props) => {
     return (
 
         <S.Card active={active} onClick={filterTasks}>
-            <S.Counter>{counter}</S.Counter>
+            <S.Counter >{counter}</S.Counter>
             <S.Label>{label}</S.Label>
         </S.Card>
     
