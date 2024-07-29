@@ -2,6 +2,7 @@ import styled from "styled-components";
 import colors from "../../styles/colors";
 
 import * as enums from '../../utils/enums/Tasks'
+import { Button } from "../../styles";
 
 
 //handle tag color----------------
@@ -34,12 +35,19 @@ export const Card = styled.div`
     padding: 16px;
     margin-bottom: 32px;
     border-radius: 16px;
+
+    label{
+        display: flex;
+        align-items: center;
+        margin-bottom: 16px;
+        
+    }
 `
 
 export const Title = styled.h3`
     font-weight: bold;
     font-size: 18px;
-    margin-bottom: 16px;
+    margin-left: 8px;
 `
 
 export const Tag = styled.span<TagProps>`
@@ -74,17 +82,7 @@ export const Actions = styled.div`
 
 
 //buttons
-export const Button = styled.button`
-    font-size: 12px;
-    padding: 8px 12px;
-    color: white;
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
-    background-color: #313131;
-    border-radius: 8px;
-    margin-right: 8px;
-`
+
 
 
 export const CancelButton = styled(Button)`

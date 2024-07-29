@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import colors from "../../styles/colors";
 
 
 export const Circle = styled(Link)`
@@ -8,7 +9,7 @@ export const Circle = styled(Link)`
     justify-content: center;
     height: 64px;
     width: 64px;
-    background-color: green;
+    background-color: ${colors.green};
     color: white;
     font-size: 40px;
     position: fixed;

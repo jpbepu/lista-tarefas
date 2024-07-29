@@ -1,6 +1,5 @@
 import styled, { createGlobalStyle } from "styled-components";
 import colors from "./colors";
-import { Button } from "../components/Task/styles";
 
 const GlobalStyle = createGlobalStyle`
 
@@ -32,6 +31,18 @@ export const Title = styled.h2`
     margin: 40px 0;
     font-weight: bold;
     font-size: 18px;
+`
+
+export const Button = styled.button`
+    font-size: 12px;
+    padding: 8px 12px;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    background-color: #313131;
+    border-radius: 8px;
+    margin-right: 8px;
 `
 
 export const InputField = styled.input`

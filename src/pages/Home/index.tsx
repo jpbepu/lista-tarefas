@@ -4,7 +4,7 @@ import AddTask from '../../components/AddTask'
 
 const Home = () => (
     <>
-        <Sidebar />
+        <Sidebar showFilters />
         <TaskList />
         <AddTask/>
     </>

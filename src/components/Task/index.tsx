@@ -1,12 +1,15 @@
-import { useEffect, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 
 import * as S from './styles'
+import { Button } from '../../styles'
 import { SaveButton } from '../../styles'
 
 
-import { remove, edit } from '../../store/reducers/tasks'
+import { remove, edit, changeStatus } from '../../store/reducers/tasks'
 import TaskClass from '../../models/Task'
+
+import * as enums from '../../utils/enums/Tasks'
 
 type Props = TaskClass
 
@@ -30,10 +33,34 @@ const Task = ({
             setDescription(initialDescription)
         }
     },[initialDescription])
+
+    function changeTaskStatus(e: ChangeEvent<HTMLInputElement>) {
+        console.log(e.target.checked)
+        dispatch(changeStatus({
+            id,
+            checked: e.target.checked,
+        }))
+    }
      
     return (
         <S.Card>
-            <S.Title>{title}</S.Title>
+
+            <label htmlFor={title}>
+                <input
+                    type="checkbox"
+                    checked={
+                        status === enums.Status.COMPLETED
+                    }
+                    onChange={changeTaskStatus}
+                    id={title}
+                />
+                <S.Title>
+                    {isEditing && <em>Editando: </em>}
+                    
+                    {title}
+                </S.Title>
+            </label>
+
             <S.Tag parameter='priority' priority={priority}>{priority}</S.Tag>
             <S.Tag parameter='status' status={status}>{status}</S.Tag>
             <S.Description
@@ -69,7 +96,7 @@ const Task = ({
                     </>
                 ) : (
                     <>
-                        <S.Button onClick={() => setIsEditing(true)}>Editar</S.Button>
+                        <Button onClick={() => setIsEditing(true)}>Editar</Button>
                         <S.RemoveButton onClick={() => dispatch(remove( id ))}>Remover</S.RemoveButton>
                     </>
                 )}

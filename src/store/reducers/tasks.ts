@@ -5,28 +5,16 @@ import * as enums from '../../utils/enums/Tasks'
 const initialState = {
 
     items: [
-    new Task(
-        'Estudar',
-        enums.Priority.IMPORTANT,
-        enums.Status.COMPLETED,
-        'Estudar front-end',
-        1
-    ),
-    new Task(
-        'Jogar',
-        enums.Priority.NORMAL,
-        enums.Status.PENDING,
-        'Jogar SF6',
-        2
-    ),
-    new Task(
-        'Dormir',
-        enums.Priority.URGENT,
-        enums.Status.PENDING,
-        'zzz',
-        3
-    )
-]};
+        {
+            id: 1,
+            description: 'Estudar JavaScript revendo o exercício do módulo 7',
+            priority: enums.Priority.NORMAL,
+            status: enums.Status.COMPLETED,
+            title: 'Estudar JavaScript'
+          },
+
+    ]
+};
 
 
 
@@ -44,7 +32,7 @@ const taskSlice = createSlice({
                 state.items[taskIndex] = action.payload
             }
         },
-        register: (state, action : PayloadAction<Task>) =>{
+        register: (state, action : PayloadAction<Omit<Task, 'id'>>) =>{
             const existingTask = state.items.find(
                 t => t.title.toLowerCase() === action.payload.title.toLowerCase()
             )
@@ -52,7 +40,25 @@ const taskSlice = createSlice({
             if (existingTask) {
                 alert('tarefa repetida')
             } else {
-                state.items.push(action.payload)
+                
+                const lastTask = state.items[state.items.length -1]
+                
+
+                const newTask = {
+                    ...action.payload,
+                    id: lastTask ? lastTask.id + 1 : 1
+                }
+
+                state.items.push(newTask)
+            }
+        },
+        changeStatus: (state, action: PayloadAction<{id: number; checked: boolean}>) =>{
+            const taskIndex = state.items.findIndex((t) => t.id === action.payload.id)
+
+            if (taskIndex >= 0) {
+                state.items[taskIndex].status = action.payload.checked ?
+                    enums.Status.COMPLETED :
+                    enums.Status.PENDING
             }
         }
 
@@ -60,5 +66,5 @@ const taskSlice = createSlice({
 
 })
 
-export const { remove, edit, register } = taskSlice.actions
+export const { remove, edit, register, changeStatus } = taskSlice.actions
 export default taskSlice.reducer

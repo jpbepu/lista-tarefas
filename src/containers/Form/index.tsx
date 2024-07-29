@@ -8,7 +8,6 @@ import { FormContainer, Options, Option } from './styles'
 
 
 import * as enums from '../../utils/enums/Tasks'
-import Task from '../../models/Task'
 import { register } from '../../store/reducers/tasks'
 
 const Form = () => {
@@ -22,15 +21,16 @@ const Form = () => {
 
     const registerTask = (e: FormEvent) => {
         e.preventDefault()
-        const taskToAdd = new Task(
-            title,
-            priority,
-            enums.Status.PENDING,
-            description,
-            9
+
+        dispatch(
+                register({
+                    title,
+                    priority,
+                    description,
+                    status : enums.Status.PENDING
+                })
         )
 
-        dispatch(register(taskToAdd))
         navigate('/')
     }
 
