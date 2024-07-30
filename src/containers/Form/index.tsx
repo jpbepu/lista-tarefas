@@ -38,26 +38,29 @@ const Form = () => {
         <MainContainer>
         <Title>Nova Tarefa</Title>
         <FormContainer onSubmit={registerTask}>
-            <InputField value={title} onChange={e => setTitle(e.target.value)} type="text" placeholder="Titulo" />
-            <InputField as="textarea" value={description} onChange={e => setDescription(e.target.value)} placeholder="Descricao da Tarefa" />
+            <InputField required value={title} onChange={e => setTitle(e.target.value)} type="text" placeholder="Titulo" />
+            <InputField as="textarea" required value={description} onChange={e => setDescription(e.target.value)} placeholder="Descricao da Tarefa" />
 
             <Options>
                 <p>Prioridade</p>
 
-                {Object.values(enums.Priority).map(p => (
+                {Object.values(enums.Priority).map((p) => (
                     <Option key={p}>
                         <input
-                            value={priority}
-                            name="priority"
+                            value={p}
+                            name="prioridade"
                             type="radio"
                             id={p}
-                            onChange={e => setPriority(e.target.value as enums.Priority)}
-                            defaultChecked={priority === enums.Priority.NORMAL}
+                            onChange={(e) => {setPriority(e.target.value as enums.Priority)
+                                console.log(priority)
+                            }}
+                            defaultChecked={p === enums.Priority.NORMAL}
                         />
 
                         <label htmlFor={p}>{p}</label>
                     </Option>
                 ))}
+
 
             </Options>
 
@@ -67,5 +70,6 @@ const Form = () => {
     </MainContainer>
     )
 }
+
 
 export default Form
