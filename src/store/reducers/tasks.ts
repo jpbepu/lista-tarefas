@@ -7,11 +7,25 @@ const initialState = {
     items: [
         {
             id: 1,
-            description: 'Estudar JavaScript revendo o exercício do módulo 7',
+            description: 'Estudar JavaScript ES6',
             priority: enums.Priority.NORMAL,
             status: enums.Status.COMPLETED,
             title: 'Estudar JavaScript'
-          },
+        },
+        {
+            id: 2,
+            description: 'Dar um banho no gato antes do almoco em familia',
+            priority: enums.Priority.URGENT,
+            status: enums.Status.PENDING,
+            title: 'Dar banho no gato'
+        },
+        {
+            id: 3,
+            description: 'Fazer as compras para o almoco em familia',
+            priority: enums.Priority.IMPORTANT,
+            status: enums.Status.PENDING,
+            title: 'Fazer compras'
+        },
 
     ]
 };
